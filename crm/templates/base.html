@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{url_for('static', filename='imgs/logo.png')}}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/indexx.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css')}}">
+    
+    {% block links %}
+    {% endblock links %}
+    <title>{% block title %} {% endblock title %}</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="{{url_for('home.index')}}"><img id="logo" src="{{url_for('static', filename='imgs/logo.png')}}" alt="Logo"></a>
+        <nav id="menu">
+            <ul>
+                <li><a href="{{url_for('cliente.index')}}">Clientes</a></li>
+                <li><a href="{{url_for('projeto.index')}}">Projetos</a></li>
+                <li><a href="{{url_for('pos_venda.index')}}">Pós-venda</a></li>
+            </ul>
+        </nav>
+        {% block navbar %}
+        {% endblock navbar %}
+    </header>
+
+    <main class="marginBody wrapper">
+        <div class="container justify-content-left">
+            <div class="row justify-content-left">
+                <!-- Conteudo Aqui!!!-->
+                {% block content %}
+                {% endblock content%}
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p> ­&copy; 2020 Pythonmancers. Todos os direitos reservados </p>
+    </footer>
+    <!--Modais aqui-->
+    {% block modal %}
+    {% endblock modal %}
+</body>
+</html>

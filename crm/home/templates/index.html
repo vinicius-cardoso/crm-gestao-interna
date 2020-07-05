@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% block title %}CRM {% endblock title %}
+
+{% block content %}
+<div class="col col-3 justify-content-center">
+    <!-- CARDS COM LEAD DE CLIENTES -->
+    <div class="border border-info rounded borderColor boxShadow">
+        <div class="card-title ml-2 mt-1 mb-0 bordBottom fontColorGray">
+            <h3>Leads Recentes</h3>
+        </div>
+        <div class="card-body p-0">
+
+            {% for c in listadoida %}
+            {% if c.status == 'Lead' %}
+
+            <div class="card mb-1 mt-1 ml-1 mr-1" style="width: auto;">
+
+                <div class="card-body p-2 fontColorGray">
+                    <h5 class="card-title fontColorGray"><a href="{{url_for('cliente.especifico', _id=c.id)}}"
+                            class="text-info">{{c.nome}}</a></h5>
+                    <p class="card-subtitle">Data {{c.datainsercao}}</p>
+                </div>
+
+            </div>
+            {% endif %}
+            {% endfor %}
+
+
+            <div class="row justify-content-start ml-1 mr-0 mt-0 mb-1" style="width: 18rem;">
+                <button type="button" id="lead" class="btn btn-outline-info"
+                    style="width: 120px;margin-right: 0.4rem;">Novo Lead</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col col-3 pl-0">
+    <!-- CARDS COM LEAD DE CLIENTES -->
+    <div class="border border-info rounded borderColor boxShadow">
+        <div class="card-title ml-2 mt-1 mb-0 bordBottom fontColorGray">
+            <h3>Projetos Ativos</h3>
+        </div>
+        <div class="card-body p-0">
+            {% for p in listadoida2 %}
+            {% if p.status == 'Ativo' %}
+            <div class="card mb-1 mt-1 ml-1 mr-1" style="width: auto;">
+                <div class="card-body p-2 fontColorGray">
+                    <h5 class="card-title fontColorGray"><a href="{{url_for('projeto.especifico',_id=p.id)}}"
+                            class=" text-info">{{p.nome}}</a></h5>
+                    <p class="card-subtitle">Prazo: {{p.prazo}}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="row justify-content-start ml-1 mr-0 mt-0 mb-1" style="width: 18rem;">
+                <button type="button" id="cadastrar-projeto" name="btn" class="btn btn-outline-info"
+                    style="width: 120px;margin-right: 0.4rem;">Novo Projeto</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col col-6 pl-0">
+    <div class="border border-info rounded borderColor p-2 boxShadow">
+        <p class="m-0 text-center"><strong> Nós possuímos <b id="projetos">
+                    {{totprojetos}}
+                </b> projeto{% if totprojetos > 1 or totprojetos == 0 %}s{% endif %} ao todo.
+            </strong></p>
+    </div>
+    <div class="border border-info rounded borderColor mt-2 p-2 boxShadow">
+        <p class="text-center"><strong> A média de avaliação da empresa é: </strong></p>
+        <p id="media" class="mb-0">
+        {% if media == 0 %}
+        <p id="mensagem" class="text-center"> Nenhuma nota foi dada ainda :/ </p>
+        {% endif %}
+        {% if media != 0 %}
+        <p id="mensagem" class="text-center"><strong id="projetos">{{media}}</strong></p>
+        {% endif %}
+        </p>
+    </div>
+    <div class="border border-info rounded borderColor mt-2 p-2 boxShadow">
+        <p class="text-center mb-1"><strong> Ano: <strong id="projetos">{{2020}}</strong></strong></p>
+        <p class="text-center mb-0"><strong>Faturamento total: <strong id="projetos">R$
+                    {% if faturamento[0][0] == None %}0,00 {% endif %} {% if faturamento[0][0] != None %}
+                    {{faturamento[0][0]}},00 {% endif %}</strong></strong></p>
+    </div>
+</div>
+
+
+{% endblock content%}
+
+{% block modal %}
+<div class="banana">
+    <div class="banana-content">
+        <div class="close" style="font-size: 30pt;">+</div>
+        <form action="/index" method="POST">
+            <label for="nome">
+                <p class="cadastro">Cliente:
+            </label>
+            <input type="text" name="nome" id="nome" placeholder="Nome do Cliente" class="modal-form" /> </p>
+            <label for="email">
+                <p class="cadastro">Email:
+            </label>
+            <input type="text" name="email" id="email" placeholder="Exemplo@exemplo.com" class="modal-form" /></p>
+            <label for="telefone">
+                <p class="cadastro">Telefone:
+            </label>
+            <input type="tel" name="telefone" id="telefone" placeholder="(99) 9 9999-9999" class="modal-form" /></p>
+            <label for="endereco">
+                <p style="display: none;" class="cadastro">Endereço:
+            </label>
+            <input type="text" name="endereco" id="endereco" style="display: none;" placeholder="Endereço"
+                class="modal-form" /></p>
+            <label for="status">
+                <p style="display: none;" class="cadastro">Status:
+            </label>
+            <input type="text" name="status" id="status" style="display: none;" value="Lead"
+                placeholder="Qualificado, Ativo, Perdido..." class="modal-form"></p>
+            <label for="">
+                <p class="cadastro">Prospecção:
+            </label><br><select id="prospeccao" name="prospeccao" class="modal-form">
+                <option value="Ativa">Ativa</option>
+                <option value="Passiva">Passiva</option>
+            </select></p>
+            <label for="datainsercao">
+                <p class="cadastro">Data:
+            </label>
+            <input type="date" name="datainsercao" id="datainsercao" class="modal-form"></p>
+            <button id="cadastro-lead" type="submit" class="btn btn-outline-info">Cadastrar</button>
+            <button id="botaoo" type="reset" class="btn btn-outline-danger">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<div class="modaleira">
+    <div class="modaleira-content">
+        <div class="closee">+</div>
+        <form action="/index" method="POST">
+            <label for="nomeprojeto">
+                <p class="cadastro">Projeto:
+            </label><br />
+            <input type="text" name="nomeprojeto" id="nomeprojeto" placeholder="Nome do Projeto"
+                class="modal-form-two" /> </p>
+            <label for="cliente">
+                <p id="move" class="cadastro">Cliente:
+            </label>
+            <input type="text" name="cliente" id="cliente" placeholder="Cliente" class="modal-form-three" /></p>
+            <label for="url">
+                <p class="cadastro">Site:
+            </label><br />
+            <input type="text" name="url" id="url" placeholder="Url" class="modal-form-two" /></p>
+            <label for="valor">
+                <p id="move" class="cadastro">Valor:
+            </label>
+            <input type="number" name="valor" id="valor" placeholder="Valor do Projeto" class="modal-form-three" /></p>
+            <label for="po">
+                <p class="cadastro">PO:
+            </label><br />
+            <input type="text" name="po" id="po" placeholder="Product Owner" class="modal-form-two" /></p>
+            <label for="tipo">
+                <p id="move" class="cadastro">Tipo:
+            </label>
+            <select name="tipo" id="tipo" class="modal-form-three">
+                <option value="Site">Site</option>
+                <option value="Sistema Web">Sistema Web</option>
+                <option value="Aplicativo">Aplicativo</option>
+            </select></p>
+            <label for="prazo">
+                <p class="cadastro">Prazo:
+            </label><br />
+            <input type="date" name="prazo" id="prazo" class="modal-form-two">
+            <label for="inicio">
+                <p id="move" class="cadastro">Início:
+            </label>
+            <input type="date" name="inicio" id="inicio" class="modal-form-three">
+            <label for="">
+                <p style="display: none;" class=" cadastro">Status:
+            </label>
+            <input style="display: none;" value="Ativo" type="text" name="status" id="status" class="modal-form-two">
+            </p>
+            
+            <button id="cadastro-projeto" type="submit" class="btn btn-outline-info">Cadastrar</button>
+            <button id="botao" type="reset" class="btn btn-outline-danger">Cancelar</button>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById('lead').addEventListener('click',
+        function () {
+            document.querySelector('.banana').style.display = 'flex'
+        });
+
+    document.querySelector('.close').addEventListener('click',
+        function () {
+            document.querySelector('.banana').style.display = 'none'
+        });
+    document.getElementById('botaoo').addEventListener('click',
+        function () {
+            document.querySelector('.banana').style.display = 'none'
+        });
+</script>
+<script>
+    document.getElementById('cadastrar-projeto').addEventListener('click',
+        function () {
+            document.querySelector('.modaleira').style.display = 'flex'
+        });
+
+    document.querySelector('.closee').addEventListener('click',
+        function () {
+            document.querySelector('.modaleira').style.display = 'none'
+        });
+    document.getElementById('botao').addEventListener('click',
+        function () {
+            document.querySelector('.modaleira').style.display = 'none'
+        });
+    </script>
+{% endblock modal %}

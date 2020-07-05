@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!-------------------------------------------------------->
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/projeto-especifico.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/posvenda.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/clientes.css')}}">
+
+
+{% endblock links %}
+{% block title %} Pesquisar
+{% endblock %}
+<!-------------------------------------------------------->
+{% block navbar %}
+<div class="local">
+    <form action="{{url_for('cliente.pesquisa')}}" class="form-inline" method="POST">
+        <input name="pesquisa" type="search" class="caixa-pesquisa" id="texto-pesquisa" placeholder="Pesquisar cliente...">
+        <button type="submit" class="botao-pesquisa" id="submit">Buscar</button>
+    </form>
+</div>
+
+{% endblock navbar %}
+
+{% block content %}
+<div class="container" id="centralizar">
+
+    <div class="row justify-content-center mt-5">
+        <div class=" col-6" id="">
+            <div id="clientes">
+                <h1>Resultados:</h1>
+                <ul>
+                    {% for cliente in clientes %}
+                    <a href="{{url_for('cliente.especifico',_id=cliente.id)}}">
+                        <li>
+                            <strong>Cliente:</strong>
+                            <p>{{cliente.nome}}</p>
+                
+                            <strong>Telefone:</strong>
+                            <p>{{cliente.telefone}}</p>
+                
+                            <strong>Data de Inserção:</strong>
+                            <p>{{cliente.datainsercao}}</p>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+{% endblock content%}

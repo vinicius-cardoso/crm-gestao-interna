@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+<!-------------------------------------------------------->
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/posvenda.css')}}">
+{% endblock links %}
+
+{% block title %}Pós-Venda {% endblock title %}
+
+<!-------------------------------------------------------->
+{% block content %}
+<div class="container" id="projetos">
+    <div id="centralizar">
+    <div class="row">
+        <div class="col col-6">
+            <h2 style="color: #4d4d4d;" class=" text-center mb-5">Pendente</h2>
+            {% for projeto in projetos %}
+            {% if projeto.status == "Concluido"%}
+            {% if (projeto.nota == -1) %}
+            <ul>
+                <a href="{{url_for('projeto.especifico', _id=projeto.id)}}">
+                    <li>
+                        <div class="p-3">
+                            <p style="font-size: 15pt;"><strong>Projeto: </strong>{{projeto.nome[:36]}}</p>
+                            <p style="font-size: 15pt;"><strong>Cliente: </strong>{{projeto.cliente}}</p>
+                            <p style="font-size: 15pt;"><strong>Nota: </strong>Aguardando Nota...</p>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col col-6">
+            <h2 style="color: #4D4D4D;" class=" text-center mb-5">Realizado</h2>
+            {% for projeto in projetos %}
+            {% if projeto.status == "Concluido"%}
+            {% if (projeto.nota != -1) %}
+            <ul>
+                <a href="{{url_for('projeto.especifico', _id=projeto.id)}}">
+                    <li>
+                        <div class="p-3">
+                            <p style="font-size: 15pt;"><strong>Projeto: </strong>{{projeto.nome[:36]}}</p>
+                            <p style="font-size: 15pt;"><strong>Cliente: </strong>{{projeto.cliente}}</p>
+                            <p style="font-size: 15pt;"><strong>Nota: </strong>{{projeto.nota}}</p>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock content%}
+<!-------------------------------------------------------->

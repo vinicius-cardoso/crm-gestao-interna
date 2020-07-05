@@ -1,0 +1,39 @@
+h1 {
+    
+    font-size: small;
+    text-align: center;
+    color: #4d4d4d;
+}
+
+div#centralizar{
+    margin-left: 170px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a,
+a:link,
+a:visited
+{
+    text-decoration: none;
+    color:#000;
+}
+
+div.container {
+    margin: 20px;
+    margin-top: 30px;
+}
+
+#projetos ul {
+    display: grid;
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+#projetos ul li {
+    background: #9adbe8;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px black;
+}

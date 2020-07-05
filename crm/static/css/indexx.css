@@ -1,0 +1,357 @@
+/*
+Cores: #4d4d4d | #00bce1 | #56ddef | #9adbe8
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+body {
+    font-family: 'Oswald', Helvetica, sans-serif;
+    background-color: #f1f1f5;
+    height: 100%;
+    margin: 0;
+}
+
+.marginBody{
+    margin-top: 100px;
+    
+}
+
+.fontColorGray{
+    color: #4d4d4d;
+}
+
+.borderColor{
+    border-color: #00bce1;
+}
+
+header {
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: #00bce1;
+    z-index: 2;
+}
+
+#menu ul {
+    position: fixed;
+    display: flex;
+    top: 0px;
+    left: 100px;
+    right: 0px;
+    height: 60px;
+    padding-left: 30px;
+    margin: 0px;
+    font-size: 16px;
+    min-width: 260px;
+}
+
+#menu ul li { 
+    display: inline;
+}
+#menu li{
+    margin-top: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+#menu ul li a {
+    padding: 12px;
+    display: inline-block;
+    background-color: #00bce1;
+    color: #102030;
+    text-decoration: none;
+}
+
+#menu ul li a:hover {
+    background-color: #56ddef;
+    color: white;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+
+#logo {
+    width: 110px;
+    height: 80px;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+main {
+    margin-top: 76px;
+}
+div#media{
+    background-color: white;
+    width: 350px;
+    height: 200px;
+    margin-left: 900px;
+    margin-top: -95px;
+    padding: 10px;
+    border: 1px solid #00bce1;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
+}
+div p#texto{
+    font-size: 15pt;
+    color: #4d4d4d;
+}
+div p#media{
+    font-size: 30pt;
+    text-align: center;
+    color: #00bce1 ;
+    margin-top: -15px;
+}
+div p#parabens{
+    font-size: 15pt;
+    margin-top: -35px;
+    color: #4d4d4d;
+    text-align: center;
+}
+div#projetoss{
+    background-color: white;
+    width: 700px;
+    height: 70px;
+    margin-left: 100px;
+    margin-top: 100px;
+    padding: 10px;
+    border: 1px solid #00bce1;
+    border-radius: 10px;
+}
+
+.boxShadow{
+    box-shadow: 1px 1px 5px black;
+}
+
+#projetos{
+    font-size: 20pt;
+    color: #00bce1;
+}
+div p b.destaque{
+    color: #00bce1;
+    font-size: 20pt;
+}
+footer {
+    width: 100%;
+    margin-top: 60px;
+    bottom: 0px;
+    left: 0px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.push{
+    height: 50px;
+}
+.footer{
+    clear: both;
+    height: 50px;
+    margin-top: 25.6%;
+    
+}
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -11.5px;
+  }
+
+#faturamentoTotal{
+    text-align: center;
+    background-color: white;
+    width: 700px;
+    height: 70px;
+    margin-left: 100px;
+    margin-top: -95px;
+    padding: 10px;
+    border: 1px solid #00bce1;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black
+}
+
+div p#money {
+    font-size: 15pt;
+    color: #4d4d4d;
+    margin-top:0px;
+}
+
+div p#money2 {
+    font-size: 15pt;
+    color: #4d4d4d;
+    margin-top: -10px;
+
+}
+p#mensagem{
+    color: #4d4d4d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+div.banana{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 2000;
+}
+div.modaleira{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 2000;
+}
+.banana-content{
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
+    border: 3px solid #00bce1;
+    position: relative;
+    animation: bg-modal .3s;
+}
+
+.modaleira-content{
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
+    border: 3px solid #00bce1;
+    position: relative;
+    animation: bg-modal .3s;
+}
+.apagarprojeto{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 2000;
+}
+.apagarprojeto-content{
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
+    border: 3px solid #00bce1;
+    position: relative;
+    animation: bg-modal .3s;
+}
+@keyframes bg-modal{
+    from{
+        opacity: 0;
+        transform: translate3d(0, -100px, 0);
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+p.cadastro{
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15pt;
+}
+.modal-form{
+    border: 1px solid #56DDEF;
+    border-radius: 6px;
+    height: 35px;
+    width: 735px;
+}
+.modal-form-two{
+    border: 1px solid #56DDEF;
+    border-radius: 6px;
+    height: 35px;
+    width: 350px;
+   
+}
+.modal-form-three{
+    border: 1px solid #56DDEF;
+    border-radius: 6px;
+    height: 35px;
+    width: 350px;
+    margin-bottom: 0px;
+}
+
+#cadastro-lead{
+    margin: 20px;
+    margin-left: 550px;
+    margin-right: 0px;
+}
+#cadastro-projeto{
+    
+    margin: 50px;
+    margin-left: 570px;
+    margin-right: 0px;
+}
+#move{
+    margin-top: -81px;
+    margin-left: 400px;
+    padding-right: 0px;
+    
+}
+ 
+.close{
+    position: absolute;
+    top: -7px;
+    right: 0px;
+    font-size: 30pt;
+    transform: rotate(45deg);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.closee{
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    font-size: 30pt;
+    transform: rotate(45deg);
+    cursor: pointer;
+    color: gray;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.fechar{
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    font-size: 30pt;
+    transform: rotate(45deg);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+    font-weight: bold;
+}
+#apagar{
+    margin: 30px;
+    margin-right: 0px;
+    margin-left: 35px;
+}
+#editar-projeto{
+    margin: -10px;
+    margin-left: 600px;
+    margin-right: 0px;
+}
+input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }

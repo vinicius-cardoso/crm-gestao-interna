@@ -1,0 +1,154 @@
+h1 {
+    padding-top: 28px;
+    font-size: 36px;
+    text-align: right;
+    color: #4d4d4d;
+}
+
+h2 {
+    color: #4d4d4d;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+a,
+a:link,
+a:visited
+{
+    text-decoration: none;
+    color:#000;
+}
+
+div.container {
+    margin: 15px;
+    margin-top: 30px;
+}
+div.row {
+    flex-wrap: nowrap;
+    margin-left: 10px;
+}
+div#centralizar{
+    margin-left: 190px;
+}
+h1.centralizar{
+    margin-left: 340px;
+}
+#cadastro{
+    margin-left: 10px;
+}
+
+#projetos {
+    margin-left: 10px;
+}
+
+#projetos ul {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    gap: 20px;
+    list-style: none;
+    margin: 10px;
+    padding-inline-start: 0px;
+}
+
+#projetos ul li {
+    font-size: 20pt;
+    background: #9adbe8;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px #333;
+}
+
+#projetos ul li p{
+    font-size: 15pt;
+}
+
+.caixa-pesquisa{
+    top: -50px;
+    left: 60%;
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 10;
+}
+
+.botao-pesquisa{
+    width: 65px; ;
+    height: 50px;
+    border-radius: 15px;
+    background-color: white;
+    border-color: #56DDEF;
+    z-index: 5;
+    color: #00bce1;
+    transition: 0.1s;
+    margin-top: 5px;
+}
+.botao-pesquisa:hover{
+    background-color: #56DDEF;
+    color: white;
+}
+div.local{
+    margin-top: -79px;
+}
+form.form-inline input#texto-pesquisa{
+    margin-left: 900px;
+    
+}
+.bg-modal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 2000;
+}
+.modal-content{
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
+    border: 3px solid #00bce1;
+    position: relative;
+    animation: bg-modal .3s;
+}
+@keyframes bg-modal{
+    from{
+        opacity: 0;
+        transform: translate3d(0, -100px, 0);
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+p.cadastro{
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15pt;
+}
+
+#move{
+    margin-top: -79px;
+    margin-left: 400px;
+    padding-right: 0px;
+    
+}
+
+.close{
+    position: absolute;
+    top: -7px;
+    right: 0px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}

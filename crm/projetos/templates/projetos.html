@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+<!-------------------------------------------------------->
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/projetoss.css')}}">
+{% endblock links %}
+
+{% block title %}Projetos {% endblock title %}
+<!-------------------------------------------------------->
+{% block navbar %}
+<div class="local">
+    <form action="{{url_for('projeto.pesquisa')}}" class="form-inline" method="POST">
+        <input name="pesquisa" type="search" class="caixa-pesquisa" id="texto-pesquisa" placeholder="Pesquisar projeto...">
+        <button type="submit" class="botao-pesquisa" id="submit">Buscar</button>
+    </form>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+
+<div  id="projetos">
+    <div class="container">
+        <h1>Projetos cadastrados</h1>
+        <button id="cadastro" class="btn btn-outline-info">Cadastrar Projeto</button>
+
+        <div class="row">
+            <div class="col col-6 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Ativos</h2>
+                </p>
+                <nav id="ativos">
+                    <ul>
+                        {% for p in projetos %}
+                        {% if p.status == 'Ativo' %}
+                        <a href="{{url_for('projeto.especifico',_id=p.id)}}">
+                            <li>
+                                <strong>Projeto:</strong>
+                                <p style="font-size: 15pt;">{{p.nome}}</p>
+
+                                <strong>Tipo:</strong>
+                                <p style="font-size: 15pt;">{{p.tipo}}</p>
+
+                                <strong>Prazo:</strong>
+                                <p style="font-size: 15pt;">{{p.prazo}}</p>
+
+                                <strong style="padding-right: 95px;">Valor:</strong>
+                                <p style="font-size: 15pt;">R$ {{p.valor}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col col-6 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Concluidos</h2>
+                </p>
+                <nav id="qualificados">
+                    <ul>    
+                        {% for p in projetos %}
+                        {% if p.status == 'Concluido' %}
+                        <a href="{{url_for('projeto.especifico',_id=p.id)}}">
+                            <li>
+                                <strong>Projeto:</strong>
+                                <p style="font-size: 15pt;">{{p.nome}}</p>
+
+                                <strong>Tipo:</strong>
+                                <p style="font-size: 15pt;">{{p.tipo}}</p>
+
+                                <strong>Prazo:</strong>
+                                <p style="font-size: 15pt;">{{p.prazo}}</p>
+
+                                <strong style="padding-right: 95px;">Valor:</strong>
+                                <p style="font-size: 15pt;">R$ {{p.valor}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col col-6 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Cancelados</h2>
+                </p>
+                <nav id="qualificados">
+                    <ul> 
+                        {% for p in projetos %}
+                        {% if p.status == 'Cancelado' %}
+                        <a href="{{url_for('projeto.especifico',_id=p.id)}}">
+                            <li>
+                                <strong>Projeto:</strong>
+                                <p style="font-size: 15pt;">{{p.nome}}</p>
+
+                                <strong>Tipo:</strong>
+                                <p style="font-size: 15pt;">{{p.tipo}}</p>
+
+                                <strong>Prazo:</strong>
+                                <p style="font-size: 15pt;">{{p.prazo}}</p>
+
+                                <strong style="padding-right: 95px;">Valor:</strong>
+                                <p style="font-size: 15pt;">R$ {{p.valor}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    {% endblock content%}
+    <!-------------------------------------------------------->
+    {% block modal %}
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <form action="" method="POST">
+                <label for="nome">
+                    <p class="cadastro">Projeto:
+                </label><br><input type="text" name="nome" id="nome" placeholder="Nome do Projeto"
+                    class="modal-form-two" /> </p>
+                <label for="cliente">
+                    <p id="move" class="cadastro">Cliente:
+                </label><input type="text" name="cliente" id="cliente" placeholder="Cliente" class="modal-form-three" />
+                </p>
+                <label for="url">
+                    <p class="cadastro">Site:
+                </label><br><input type="text" name="url" id="url" placeholder="Url" class="modal-form-two" /></p>
+                <label for="valor">
+                    <p id="move" class="cadastro">Valor:
+                </label><input type="number" name="valor" id="valor" placeholder="Valor do Projeto"
+                    class="modal-form-three" /></p>
+                <label for="po">
+                    <p class="cadastro">PO:
+                </label><br><input type="text" name="po" id="po" placeholder="Product Owner" class="modal-form-two" />
+                </p>
+                <label for="tipo">
+                    <p id="move" class="cadastro">Tipo:
+                </label><select name="tipo" id="tipo" class="modal-form-three">
+                    <option value="Site">Site</option>
+                    <option value="Sistema Web">Sistema Web</option>
+                    <option value="Aplicativo">Aplicativo</option>
+                </select></p>
+                <label for="prazo">
+                    <p class="cadastro">Prazo:
+                </label><br><input type="date" name="prazo" id="prazo" class="modal-form-two">
+                <label for="inicio">
+                    <p id="move" class="cadastro">Início:
+                </label><input type="date" name="inicio" id="inicio" class="modal-form-three">
+                <label for="status">
+                    <p style="display: none;" class="cadastro">Status:
+                </label><br><input style="display: none;" value="Ativo" type="text" name="status" id="status"
+                    class="modal-form-two"></p>
+
+                <button id="cadastro-projeto" type="submit" class="btn btn-outline-info">Cadastrar</button>
+                <button id="botao" type="reset" class="btn btn-outline-danger">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        document.getElementById('cadastro').addEventListener('click',
+            function () {
+                document.querySelector('.bg-modal').style.display = 'flex'
+            });
+
+        document.querySelector('.close').addEventListener('click',
+            function () {
+                document.querySelector('.bg-modal').style.display = 'none'
+            });
+        document.getElementById('botao').addEventListener('click',
+            function () {
+                document.querySelector('.bg-modal').style.display = 'none'
+            });
+    </script>
+    {% endblock modal %}

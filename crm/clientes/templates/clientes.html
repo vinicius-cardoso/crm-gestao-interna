@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+<!-------------------------------------------------------->
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/clientes.css')}}">
+{% endblock links %}
+
+{% block title %} Clientes
+{% endblock %}
+<!-------------------------------------------------------->
+{% block navbar %}
+<div class="local">
+    <form action="{{url_for('cliente.pesquisa')}}" class="form-inline" method="POST">
+        <input name="pesquisa" type="search" class="caixa-pesquisa" id="texto-pesquisa" placeholder="Pesquisar cliente...">
+        <button type="submit" class="botao-pesquisa" id="submit">Buscar</button>
+    </form>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+
+<div id="clientes">
+    <div class="container">
+        <h1 class="centralizar">Clientes cadastrados</h1>
+        <button id="cadastro" class="btn btn-outline-info">Cadastrar Cliente</button>
+        <div class="row">
+            <div class="col col-3 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Leads</h2>
+                </p>
+                <nav id="lead">
+                    <ul>
+                        {% for c in clientes %}
+                        {% if c.status == 'Lead' %}
+                        <a href="{{url_for('cliente.especifico',_id=c.id)}}">
+                            <li>
+                                <strong>Cliente:</strong>
+                                <p>{{c.nome}}</p>
+
+                                <strong>Telefone:</strong>
+                                <p>{{c.telefone}}</p>
+
+                                <strong>Data de Inserção:</strong>
+                                <p>{{c.datainsercao.replace('-', '/')}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col col-3 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Qualificados</h2>
+                </p>
+                <nav id="qualificados">
+                    <ul>
+                        {% for c in clientes %}
+                        {% if c.status == 'Qualificado' %}
+                        <a href="{{url_for('cliente.especifico',_id=c.id)}}">
+                            <li>
+                                <strong>Cliente:</strong>
+                                <p>{{c.nome}}</p>
+
+                                <strong>Telefone:</strong>
+                                <p>{{c.telefone}}</p>
+
+                                <strong>Data de Inserção:</strong>
+                                <p>{{c.datainsercao.replace('-', '/')}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col col-3 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Proposta Enviada</h2>
+                </p>
+                <nav id="propenv">
+                    <ul>
+                        {% for c in clientes %}
+                        {% if c.status == 'Proposta Enviada' %}
+                        <a href="{{url_for('cliente.especifico',_id=c.id)}}">
+                            <li>
+                                <strong>Cliente:</strong>
+                                <p>{{c.nome}}</p>
+
+                                <strong>Telefone:</strong>
+                                <p>{{c.telefone}}</p>
+
+                                <strong>Data de Inserção:</strong>
+                                <p>{{c.datainsercao.replace('-', '/')}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col col-3 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Em Negociação</h2>
+                </p>
+                <nav id="propneg">
+                    <ul>
+                        {% for c in clientes %}
+                        {% if c.status == 'Em Negociação' %}
+                        <a href="{{url_for('cliente.especifico',_id=c.id)}}">
+                            <li>
+                                <strong>Cliente:</strong>
+                                <p>{{c.nome}}</p>
+
+                                <strong>Telefone:</strong>
+                                <p>{{c.telefone}}</p>
+
+                                <strong>Data de Inserção:</strong>
+                                <p>{{c.datainsercao.replace('-', '/')}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col col-3 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Ativos</h2>
+                </p>
+                <nav id="ativos">
+                    <ul>
+                        {% for c in clientes %}
+                        {% if c.status == 'Ativo' %}
+                        <a href="{{url_for('cliente.especifico',_id=c.id)}}">
+                            <li>
+                                <strong>Cliente:</strong>
+                                <p>{{c.nome}}</p>
+
+                                <strong>Telefone:</strong>
+                                <p>{{c.telefone}}</p>
+
+                                <strong>Data de Inserção:</strong>
+                                <p>{{c.datainsercao.replace('-', '/')}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col col-3 p-0">
+                <p>
+                <h2 style="color: #4d4d4d;" class="text-center">Perdidos</h2>
+                </p>
+                <nav id="perdidos">
+                    <ul>
+                        {% for c in clientes %}
+                        {% if c.status == 'Perdido' %}
+                        <a href="{{url_for('cliente.especifico',_id=c.id)}}">
+                            <li>
+                                <strong>Cliente:</strong>
+                                <p>{{c.nome}}</p>
+
+                                <strong>Telefone:</strong>
+                                <p>{{c.telefone}}</p>
+
+                                <strong>Data de Inserção:</strong>
+                                <p>{{c.datainsercao.replace('-', '/')}}</p>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content%}
+    <!-------------------------------------------------------->
+    {% block modal %}
+    <div class="jogos">
+        <div class="jogos-content">
+            <div class="close-">+</div>
+            <form action="" method="POST">
+                <label for="">
+                    <p class="cadastro">Cliente:
+                </label><br><input type="text" name="nome" id="nome" placeholder="Ex: Gertúlio da Silva Santos"
+                    class="modal-form-two" /> </p>
+                <label for="">
+                    <p id="move" class="cadastro">Data:
+                </label><input type="date" name="datainsercao" id="datainsercao" class="modal-form-three"></p>
+                <label for="">
+                    <p class="cadastro">Email:
+                </label><br><input type="text" name="email" id="email" placeholder="Exemplo@exemplo.com"
+                    class="modal-form-two" /></p>
+                <label for="">
+                    <p id="move" class="cadastro">Telefone:
+                </label><input type="tel" name="telefone" id="telefone" placeholder="(99) 9 9999-9999"
+                    class="modal-form-three" /></p>
+                <label for="">
+                    <p class="cadastro">Endereço:
+                </label><br><input type="text" name="endereco" id="endereco" placeholder="Ex: Bairro do Limoeiro"
+                    class="modal-form-two" /></p>
+                <label for="">
+                    <p id="move" class="cadastro">Status:
+                </label><select name="status" id="status" class="modal-form-three">
+                    <option value="Lead">Lead</option>
+                    <option value="Qualificado">Qualificado</option>
+                    <option value="Proposta Enviada">Proposta Enviada</option>
+                    <option value="Em Negociação">Em Negociação</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Perdido">Perdido</option>
+                </select></p>
+                <label for="">
+                    <p class="cadastro">Prospecção:
+                </label><br><select id="prospeccao" name="prospeccao" class="modal-form-two">
+                    <option value="Ativa">Ativa</option>
+                    <option value="Passiva">Passiva</option>
+                </select></p>
+
+                <button id="cadastro-cliente" type="submit" class="btn btn-outline-info">Cadastrar</button>
+                <button id="botao" type="reset" class="btn btn-outline-danger">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        document.getElementById('cadastro').addEventListener('click',
+            function () {
+                document.querySelector('.jogos').style.display = 'flex'
+            });
+
+        document.querySelector('.close-').addEventListener('click',
+            function () {
+                document.querySelector('.jogos').style.display = 'none'
+            });
+        document.getElementById('botao').addEventListener('click',
+            function () {
+                document.querySelector('.jogos').style.display = 'none'
+            });
+    </script>
+
+    {% endblock modal %}

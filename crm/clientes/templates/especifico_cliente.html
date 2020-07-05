@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+<!-------------------------------------------------------->
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/cliente-especifico.css')}}">
+{% endblock links %}
+
+{% block title %} Cliente - {{cliente.nome}} {% endblock %}
+<!-------------------------------------------------------->
+{% block content %}
+<div class=" row justify-content-center">
+    <div class="card mb-3 w-100" id="rowCard">
+        <div class="row">
+            <div class="col-4">
+                <img src="../../static/imgs/vasos.webp" alt="Card image cap" class="rounded img-fluid">
+            </div>
+            <div class="col-8">
+                <h5><strong class="color1">{{cliente.nome}}</strong></h5>
+                <p class="color5"><strong>ID: {{cliente.id}}</strong></p>
+                <hr>
+                <div class="row">
+                    <div class="col-5">
+                        <strong class="color3">E-mail: </strong>
+                        <p class="color5">{{cliente.email}}</p>
+                        <strong class="color3">Telefone: </strong>
+                        <p class="color5">{{cliente.telefone}}</p>
+                        <strong class="color3">Prospecção: </strong>
+                        <p class="color5">{{cliente.prospeccao}} </p>
+                        <div class="form-group pl-0">
+                        </div>
+                        <p><strong class="color3 mb-3">Histórico de Status: </strong></p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6 pl-0">
+                                    <p> Lead em:<br>{{cliente_dts_status[0]}}</p>
+                                    <p> Qualificado em:<br>{{cliente_dts_status[1]}}</p>
+                                    <p> Proposta Enviada em:<br>{{cliente_dts_status[2]}}</p>
+                                </div>
+                                <div class="col-6 pl-0">
+                                    <p> Negociacao em:<br>{{cliente_dts_status[3]}}</p>
+                                    <p> Ativo em:<br>{{cliente_dts_status[4]}}</p>
+                                    <p> Perdido em:<br>{{cliente_dts_status[5]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7 pl-0">
+                        <strong class="color3">Endereço:</strong>
+                        
+                        <p class="color5">{{cliente.endereco}}</p>
+                       
+                        <hr>
+                        <button id="editarcliente" class="btn btn-outline-info btn-sm mt-4">Editar</button>
+                        <button id="apagarcliente" class="btn btn-outline-danger btn-sm mt-4">Apagar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center w-100">
+        <div class="card w-100" id="rowCard">
+            <div class="row justify-content-center">
+                <div class="col-12 ml-3 mt-2">
+                    <div class="form-group pl-0">
+                        <form method="POST">
+                            <div class="form-group" style="width: auto;">
+                                <label for="observacaoExtra" class=" color3"><strong>ADICIONAR
+                                        COMENTÁRIOS:</strong></label>
+                                <input type="text" name="comentario" class="form-control mr-5" id="observacaoExtra" style="width: 95%;">
+                            </div>
+                            <button type="submit" class="btn btn-outline-info">Adicionar</button>
+                        </form>
+                    </div>
+                    <p class=" mb-2 mt-4"><strong class="color3">COMENTÁRIOS:</strong></p>
+                    {% for obs in cliente_observacoes %}
+                    <p class="color5 mb-1">{{obs}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock content%}
+<!-------------------------------------------------------->
+{% block modal %}
+<div class="clientes-modal">
+    <div class="clientes-content">
+        <div class="fechar-cliente">+</div>
+        <form action="" method="POST">
+            <label for="">
+                <p class="cadastro">Cliente:
+            </label><br><input type="text" name="nome" id="nome" value="{{cliente.nome}}" placeholder="Nome do Cliente"
+                class="modal-form-two" /> </p>
+            <label for="">
+                <p id="move" class="cadastro">Data:
+            </label><input type="date" name="datainsercao" value="{{cliente.datainsercao}}" id="datainsercao"
+                class="modal-form-three"></p>
+            <label for="">
+                <p class="cadastro">Email:
+            </label><br><input type="text" name="email" id="email" value="{{cliente.email}}"
+                placeholder="Exemplo@exemplo.com" class="modal-form-two" /></p>
+            <label for="">
+                <p id="move" class="cadastro">Telefone:
+            </label><input type="tel" name="telefone" value="{{cliente.telefone}}" id="telefone"
+                placeholder="(99) 9 9999-9999" class="modal-form-three" /></p>
+            <label for="">
+                <p class="cadastro">Endereço:
+            </label><br><input type="text" name="endereco" id="endereco" value="{{cliente.endereco}}"
+                placeholder="Endereço" class="modal-form-two" /></p>
+            <label for="">
+                <p id="move" class="cadastro">Status:
+            </label><select name="status" id="status" class="modal-form-three">
+                <option value="{{cliente.status}}">{{cliente.status}} (Atual)</option>
+                <option value="Lead">Lead</option>
+                <option value="Qualificado">Qualificado</option>
+                <option value="Proposta Enviada">Proposta Enviada</option>
+                <option value="Em Negociação">Em Negociação</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Perdido">Perdido</option>
+            </select></p>
+            <label for="">
+                <p class="cadastro">Prospecção:
+            </label><br><select id="prospeccao" name="prospeccao" class="modal-form-two">
+                <option value="{{cliente.prospeccao}}">{{cliente.prospeccao}} (Atual)</option>
+                <option value="Ativa">Ativa</option>
+                <option value="Passiva">Passiva</option>
+            </select></p>
+
+            <button id="editar-cliente" type="submit" class="btn btn-outline-info">Cadastrar</button>
+            <button id="botao" type="reset" class="btn btn-outline-danger">Cancelar</button>
+        </form>
+    </div>
+</div>
+<div class='apagarcliente'>
+    <div class="apagarcliente-content">
+        <div class="fechar">+</div>
+        <p> Tem certeza que deseja apagar o cliente {{cliente.nome}}? </p>
+        <form action="" method="POST">
+            <button id="apagar" type="submit" class='btn btn-outline-danger'>Confirmar</button>
+            <button id="cancelar" type="reset" class='btn btn-outline-secondary'>Cancelar</button>
+        </form>
+    </div>
+</div>
+<script>
+
+    document.getElementById('editarcliente').addEventListener('click',
+        function () {
+            document.querySelector('.clientes-modal').style.display = 'flex'
+        });
+
+    document.querySelector('.fechar-cliente').addEventListener('click',
+        function () {
+            document.querySelector('.clientes-modal').style.display = 'none'
+        });
+    document.getElementById('botao').addEventListener('click',
+        function () {
+            document.querySelector('.clientes-modal').style.display = 'none'
+        });
+</script>
+<script>
+
+    document.getElementById('apagarcliente').addEventListener('click',
+        function () {
+            document.querySelector('.apagarcliente').style.display = 'flex'
+        });
+
+    document.querySelector('.fechar').addEventListener('click',
+        function () {
+            document.querySelector('.apagarcliente').style.display = 'none'
+        });
+    document.getElementById('cancelar').addEventListener('click',
+        function () {
+            document.querySelector('.apagarcliente').style.display = 'none'
+        });
+</script>
+{% endblock %}
